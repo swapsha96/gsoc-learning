@@ -1,0 +1,16 @@
+The bcf directory contains "Basic Calibration Files" and the cpf directory 
+contains "Calibration Product Files"
+
+Basic Calibration Files contain basic calibration information such as 
+	the effective area, energy resolution, collimator responses 
+	of the instrument. In many ways these datasets can be thought of 
+	as the 'atomic' units of calibration.
+
+Calibration Product Files contain 'higher' level calibration products
+	(which can usually be generated using BCF datasets) suitable 
+	for specific data analysis tasks. Examples include response matrices 
+        etc.
+
+A compressed tar file containing all the "Good Quality" calibration datasets 
+necessary for analysis (BCFs & CPFs, excluding any datasets which have been 
+superceded) is available as goodfile_xte_pca.tar.Z

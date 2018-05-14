@@ -1,0 +1,78 @@
+
+----------------------------------------------------------------------------
+
+Updating your Cal directory
+
+In your Cal/Day0000 subdirectory, there should be a file the name of which is
+a date, like "1997June18". At the legacy.gsfc.nasa.gov FTP site you will
+find the calibration tar file cal1.tar which should have a similar creation
+date. If the date at the ftp site is more recent than the one in your
+database, it is time to renew following the recipe.
+
+Directories:
+
+You should either have or create the FD/Cal/Day0000
+directories in your XTE database. (This isn't absolutely necessary, of
+course, but these recipes assume the structure is there. If you want to do
+it another way, set your calibration database environment variables
+accordingly following the example below.)
+
+Steps:
+
+  1. Download cal1.tar by anonymous FTP from legacy.gsfc.nasa.gov, directory
+     xte/calib_data (binary transfer!).
+
+  2. Set the environment variable XFDB giving the full path to the top of
+     your XTE database, i.e. the FD directory:
+
+         setenv XFDB /blah/blah/FD
+
+  3. Go into the Day0000 directory, delete its old contents, and untar the
+     cal1.tar file (giving the path to wherever you downloaded it):.
+
+         cd $XFDB/Cal
+         rm -rf Day0000
+         tar xvf /...path.../cal1.tar
+
+  4. Set the appropriate environment variables either by hand:
+
+         setenv CALDB $XFDB/Cal/Day0000
+         setenv CALDBCONFIG $CALDB/caldb.config
+         setenv CALDBALIAS ./
+
+     or by using the XTECALDB file found in the same directory on the FTP
+     site and within the tar file:
+
+         source XTECALDB
+
+  5. Create (if it does not already exist) the top level FMI file. For
+     instance,
+
+         cd $XFDB
+         cp AO1/P00033/FMI .
+         recofmi dirpath=$XFDB level=2 delete=yes
+
+     (For details, see the Database Management recipe.)
+
+An alternative for the steps 3 and 4, if you prefer to install the cal1 file
+in directory /foo/bar, independently from your XTE database:
+
+  3.    cd /foo/bar
+        tar xvf /cal1.tar
+
+  4.    setenv CALDB /foo/bar
+        setenv CALDBCONFIG $CALDB/caldb.config
+        setenv CALDBALIAS ./
+
+NOTE: In either case you may want to include steps 2 and 4 in your .login
+file so that these variables are set automatically when you log in.
+
+For more information about the XTE calibration database, please see the
+on-line recipe at:
+
+http://heasarc.gsfc.nasa.gov/docs/xte/recipes/cal_dir.html
+
+======================================================================
+for help:  Tess Jaffe,  XTE GOF       jaffe@milkyway.gsfc.nasa.gov
+========   GSFC/NASA, Greenbelt, MD      (301) 286-8735  [voice-mail]
+

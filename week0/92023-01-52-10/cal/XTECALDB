@@ -1,0 +1,4 @@
+setenv CALDB $XFDB/Cal
+setenv CALDBCONFIG $CALDB/caldb.config
+setenv CALDBALIAS ./
+
